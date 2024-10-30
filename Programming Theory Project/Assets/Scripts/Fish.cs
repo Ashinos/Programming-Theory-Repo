@@ -5,6 +5,25 @@ using UnityEngine;
 
 public abstract class Fish : MonoBehaviour
 {
+    float speed = 5;
+    public float Speed //ENCAPSULATION
+    {
+        get { return speed; }
+        set
+        {
+            if (value >= 3 && value <= 15)
+            {
+                speed = value;
+            }
+
+            else
+            {
+                speed = 3;
+                Debug.LogError("Minimum speed is 3 and maximum 15! Speed reset to 3");
+            }
+                
+        }
+    }
     public abstract void Swim();
 
     protected Vector3 SetRandomDirection()

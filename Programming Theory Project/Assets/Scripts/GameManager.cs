@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,18 +11,40 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        FindAllFishAndSwim();
+
+    }
+
+    void FindAllFishAndSwim()
+    {
         allFish = FindObjectsOfType<Fish>();
 
         foreach (Fish fish in allFish)
         {
             fish.Swim();
         }
-
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseFishSpeed()
     {
+        foreach (Fish fish in allFish)
+        {
+            fish.Speed += 1;
+            Debug.Log("Current Speed: " + fish.Speed);
+        }
+    }
 
+    public void DecreaseFishSpeed()
+    {
+        foreach (Fish fish in allFish)
+        {
+            fish.Speed -= 1;
+            Debug.Log("Current Speed: " + fish.Speed);
+        }
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
